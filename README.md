@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- BANNER -->
-<img src="https://via.placeholder.com/900x300/0f172a/38bdf8?text=TAXA&fontSize=48" alt="TAXA Banner" width="100%" />
+<img src="docs/assets/banner.svg" alt="TAXA Banner" width="100%" />
 
 <!-- BADGES -->
 <br/><br/>
@@ -50,24 +50,12 @@ LMS konvensional hanya menghitung nilai. **TAXA** menghitung *motivasi*.
 
 ## 🔄 Alur Pembelajaran
 
-```
-  ┌──────────────────┐       ┌──────────────────┐       ┌──────────────────┐
-  │                  │       │                  │       │                  │
-  │   🎯 SETEL MISI │──────▶│  📚 MODUL + KUIS │──────▶│  🏆 DAPAT BADGE  │
-  │    (Otonomi)     │       │    (Pembelajaran) │       │   (Kompetensi)   │
-  │                  │       │                  │       │                  │
-  └──────────────────┘       └──────────────────┘       └────────┬─────────┘
-                                                                 │
-                                                                 │
-                         ┌───────────────────────────────────────┘
-                         │
-                         ▼
-              ┌─────────────────────┐
-              │                     │
-              │   👥 CLAN & PEER    │
-              │   SUPPORT (Relasi)  │
-              │                     │
-              └─────────────────────┘
+```mermaid
+flowchart LR
+    A["🎯 Setel Misi\n(Otonomi)"] --> B["📚 Modul + Kuis\n(Pembelajaran)"]
+    B --> C["🏆 Dapat Badge\n(Kompetensi)"]
+    C --> D["👥 Clan & Peer Support\n(Relasi)"]
+    D --> A
 ```
 
 1. **🎯 Setel Misi** → Pilih topik, durasi, dan tingkat kesulitan
@@ -197,25 +185,11 @@ uvicorn main:app --reload   # http://localhost:8000
 
 <img src="https://img.shields.io/badge/UN_SDG_4-Quality%20Education-E5243B?style=for-the-badge&logo=united-nations&logoColor=white" />
 
+<br/><br/>
+
+<img src="docs/assets/dampak.svg" alt="Dampak TAXA" width="100%" />
+
 </div>
-
-<br/>
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  📊  Target Dampak                                             │
-│                                                                 │
-│  🎯  +25% Engagement siswa dalam semester pertama               │
-│  🧠  Peningkatan efikasi diri akademik                         │
-│  🤝  Budaya collaborative learning antar siswa                  │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-| Dimensi | Dampak |
-|---|---|
-| 🎓 **Pendidikan** | Budaya belajar proaktif & mandiri (SDG 4) |
-| 🧠 **Psikologis** | Mengurangi kejenuhan akademik dengan learning loop yang memuaskan |
-| 👥 **Sosial** | Memperkuat kolaborasi & komunikasi antar siswa |
 
 <br/>
 
