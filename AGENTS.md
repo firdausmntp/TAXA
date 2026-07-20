@@ -1,61 +1,20 @@
 # AGENTS.md
 
-Panduan untuk AI coding agent yang bekerja di proyek TAXA.
+<!-- Simplified to the absolute minimum to keep instructions dry and focused -->
 
----
+TAXA: Platform Edukasi Pajak Adaptif Berbasis Multi-Agent RAG.
+Source of Truth: [PRD](prd.md), [SRS](srs.md), [TDD](tdd.md).
 
-## Proyek
+## Stack & Conventions
+- **Frontend (`apps/web`):** React + TS + Tailwind + TanStack Query (Format: Prettier).
+- **Backend AI (`services/ai`):** FastAPI + LangChain + Python (Format: Black).
+- **Database & Auth:** Supabase (PostgreSQL + pgvector with strict RLS).
+- **Git:** Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`). Branch: `main` or `feat/*`.
 
-**TAXA** — Platform Edukasi Pajak Adaptif Berbasis Multi-Agent RAG untuk Pelajar Indonesia. Platform pembelajaran adaptif berbasis gamifikasi menggunakan Self-Determination Theory (SDT) untuk meningkatkan motivasi belajar siswa.
-
-**Stack:** Vite + React + TanStack Query + Tailwind CSS + Supabase (PostgreSQL + Auth) + Python FastAPI (AI/RAG backend)
-
-## Konvensi Kode
-
-- **Bahasa:** TypeScript (frontend), Python (backend AI)
-- **Formatting:** Prettier (frontend), Black (Python)
-- **Commit:** Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`)
-- **Branch:** `main` (stabil), `feat/*`, `fix/*`
-- **PR:** Kecil dan fokus. Satu fitur/perbaikan per PR.
-
-## Arsitektur
-
-```
-taxa/
-├── apps/
-│   └── web/          # Vite + React + TS frontend
-│                     # → src/App.tsx      komponen entry
-│                     # → src/main.tsx     root render + providers (QueryClient, BrowserRouter)
-│                     # → src/index.css    Tailwind directives + global resets
-│                     # → tailwind.config.js, postcss.config.js
-├── services/
-│   └── ai/           # Python FastAPI — multi-agent RAG, adaptive engine
-│                     # → main.py          FastAPI app entry + CORS + /health
-│                     # → requirements.txt pinned deps (fastapi, langchain, supabase, openai)
-├── packages/
-│   └── shared/       # Shared TypeScript types & constants (diimpor oleh apps/web)
-├── supabase/
-│   └── migrations/   # File migrasi SQL + RLS policies
-├── docs/             # Catatan riset, notulen, wireframe
-├── .env.example      # Template env vars (salin ke .env, jangan pernah commit .env)
-├── .gitignore        # Mengabaikan node_modules, dist, .venv, .env, __pycache__
-├── AGENTS.md         # File ini — panduan untuk AI coding agent
-├── CONCEPT.md        # Concept paper — masalah, solusi, pemetaan SDT
-├── LICENSE           # MIT
-└── README.md         # Gambaran proyek, badges, cara memulai
-```
-
-## Prinsip
-
-1. **SDT di setiap fitur.** Setiap elemen UI harus melayani Otonomi, Kompetensi, atau Relasi. Kalau tidak melayani salah satunya, hapus.
-2. **Dependensi minimal.** Kirim versi paling sederhana dulu. Tambah library hanya ketika solusi native tidak cukup.
-3. **AI melayani siswa.** AI adalah coach pembelajaran, bukan generator konten. Umpan balik harus personal, bukan generik.
-4. **Aksesibilitas pertama.** Siswa Indonesia pakai berbagai perangkat dan koneksi. Optimalkan untuk HP low-end.
-5. **Privasi data.** Data siswa sensitif. Supabase RLS wajib. Tidak ada PII di logs.
-
-## Larangan
-
-- Jangan over-engineering. Jangan buat abstraksi yang hanya dipakai satu kali.
-- Jangan fitur "jaga-jaga". Kirim MVP dulu, lalu iterasi.
-- Jangan dark patterns. Gamifikasi untuk memotivasi, bukan memanipulasi.
-- Jangan hardcode secrets. Gunakan `.env` dan Supabase Vault.
+## Core Rules
+1. **YAGNI First:** Build only the minimum working solution. No unrequested abstractions or third-party packages.
+2. **SDT Alignment:** Every feature/UI must serve Autonomy (career choice), Competence (instant feedback, Mock SPT), or Relatedness (Clan peer-support).
+3. **No Hallucinations:** RAG chatbot must strictly reference retrieved context from UU HPP.
+4. **Hybrid Validation:** Backend evaluates tax calculations using deterministic Python logic. LLM is only used for formatting hints.
+5. **Security:** Use environment variables for API keys. Database access must enforce RLS.
+6. **Persistent Memory:** Always read [brain.md](file:///Users/nomina/Projects/TAXA/brain.md) at the start of a task to get context, and update its change log and roadmap when you make any changes.
